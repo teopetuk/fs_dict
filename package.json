@@ -1,0 +1,24 @@
+{
+  "name": "fs_dict",
+  "version": "0.1.0",
+  "description": "use folder with json files as dictionary",
+  "main": "./src/fs_dict",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "nodeunit test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/teopetuk/fs_dict.git"
+  },
+  "keywords": [
+    "json db"
+  ],
+  "author": "TeopeTuK",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/teopetuk/fs_dict/issues"
+  }
+}
