@@ -1,4 +1,5 @@
 path = require 'path'
+fs = require 'fs'
 fsDict = require '../src/fs_dict'
 
 module.exports =
@@ -25,4 +26,25 @@ module.exports =
                                             t.ok !error, error
                                             console.log result
                                             t.ok result?.words["1"].value==3,
+                                            t.done()
+
+    "clear":
+            "from files list":(t)->
+                                 fname = path.join @cfg.basePath, "words/tmp.tmp"
+                                 @cfg.collections[0].files=["tmp.tmp"]
+                                 fs.appendFileSync fname,'tmp data'
+                                 fsDict.clear @cfg, 0, (error,result) ->
+                                            t.ok !error, error
+                                            console.log result
+                                            t.done()
+            "from folder": (t)->
+                                 @cfg.collections[0].files=null
+                                 @cfg.collections[0].folder="words"
+                                 fname = path.join @cfg.basePath, "words/tmp.tmp"
+                                 @cfg.collections[0].folderFilter=
+                                    (name) -> return name.match /\.tmp/
+                                 fs.appendFileSync fname,'tmp data'
+                                 fsDict.clear @cfg, 0, (error,result) ->
+                                            t.ok !error, error
+                                            console.log result
                                             t.done()

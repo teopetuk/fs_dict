@@ -32,9 +32,10 @@ module.exports =
         return callback "no collection (#{collectionIndex})" unless collection=collections?[collectionIndex]
 
         console.log "clear collection (#{collectionIndex}): ",collection.descr
-        return callback 'bad collection: folder' if !folder
 
-        {property,keyProperty,folder,files,folderSort,folderFilter} = collection
+        {folder,files,folderFilter} = collection
+        return callback 'bad collection: folder' if !folder
+        folderPath = path.join basePath, folder
 
         rmFiles=
             (files)->
